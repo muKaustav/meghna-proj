@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Frame from './components/frame/frame'
+import './app.scss'
 
 function App() {
+  let [day, setDay] = useState(true)
+  let [buttonText, setButtonText] = useState('Make it a Night')
+
+  let handleToggle = () => {
+    setDay(!day)
+
+    if (day) {
+      setButtonText('Make it a Day')
+    } else {
+      setButtonText('Make it a Night')
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button className="button" onClick={handleToggle}>
+        <div className="button-text">
+          {buttonText}
+        </div>
+      </button>
+      <Frame day={day} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
